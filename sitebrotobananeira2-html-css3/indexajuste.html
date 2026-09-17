@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tônico Broto da bananeira</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="interatividade.css">
+
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-badge">B</span>
+                <span class="logo-text">Tônico Broto da Bananeira</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#saiba-mais">Saiba mais</a></li>
+                <li><a href="sitebrotobananeira2.html" class="btn-primary">Comprar</a></li>
+            </ul>
+
+            <button class="menu-toggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <div class="hero-content">
+            <h1>O Tônico broto da bananeira</h1>
+            <p>Feito com o melhor da natureza, recupera os fios capilares e devolve a força e o crescimento natural do cabelo</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section class="section-intro reveal" id="sobre">
+            <h2>Da Raiz Nasce a Força</h2>
+            <p class="subtitle">O Tônico Broto de bananeira fortalece os fios desde a raiz, com ingredientes 100% naturais. Veja os benefícios:</p>
+
+            <div class="card-highlight">
+                <h3>Cuidado que começa no couro cabeludo</h3>
+                <p>Criado especialmente para cuidar dos seus fios com o que a natureza tem de melhor, o Tônico do Broto da Bananeira une tradição e cuidado em cada gota. Sinta a força da raiz do broto agindo na recuperação dos fios capilares danificados e estimulando um crescimento saudável e descubra o cabelo que você merece ter.</p>
+            </div>
+        </section>
+
+        <section class="section-benefits reveal" id="saiba-mais">
+            <h2>Benefícios do Tonico Broto de bananeira</h2>
+
+            <ul class="benefits-list">
+                <li class="beneficio-card"><strong>Recuperação dos fios</strong> - repara a fibra capilar danificada</li>
+                <li class="beneficio-card"><strong>Crescimento saudável</strong> - estimula o couro cabeludo para fios mais fortes</li>
+                <li class="beneficio-card"><strong>Redução de queda</strong> - fortalece a raiz e combate a queda capilar</li>
+                <li class="beneficio-card"><strong>Brilho natural</strong> - devolve o viço e a maciez dos fios danificados</li>
+                <li class="beneficio-card"><strong>Nutrição profunda</strong> - hidrata e nutre com ingredientes naturais</li>
+            </ul>
+
+            <div class="btn">
+                <a href="#comprar" class="btn-primary">Comprar agora</a>
+                <a href="#saiba-mais" class="btn-secundary">Ver benefícios</a>
+            </div>
+        </section>
+
+        <section class="checkout-section reveal" id="comprar">
+            <div class="checkout-container">
+                <h2>Finalize seu Pedido</h2>
+                <p class="subtitle">Garanta o seu Tônico Broto da Bananeira com frete rápido e seguro.</p>
+
+                <form action="#" method="POST" class="checkout-form">
+
+                    <!--Dados Pessoais-->
+                    <fieldset class="form-group">
+                        <legend>1. Dados Pessoais</legend>
+
+                        <div class="input-box">
+                            <label for="nome">Nome Completo *</label>
+                            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                        </div>
+
+                        <div class="input-grid">
+                            <div class="input-box">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="telefone">WhatsApp / Telefone *</label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="(00) 90000-0000" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!--Dados da Entrega-->
+                    <fieldset class="form-group">
+                        <legend>2. Endereço de Entrega</legend>
+
+                        <div class="input-grid">
+                            <div class="input-box">
+                                <label for="cep">CEP *</label>
+                                <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" required>
+                            </div>
+
+                            <div>
+                                <label for="rua">Rua / Avenida *</label>
+                                <input type="text" id="rua" name="rua" placeholder="Nome da rua" required>
+                            </div>
+                        </div>
+
+                        <div class="input-grid-3">
+                            <div class="input-box">
+                                <label for="numero">Número *</label>
+                                <input type="number" id="numero" name="numero" placeholder="123" required>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="bairro">Bairro *</label>
+                                <input type="text" id="bairro" name="bairro" placeholder="Seu bairro" required>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="cidade">Cidade/UF *</label>
+                                <input type="text" id="cidade" name="cidade" placeholder="Cidade - UF" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Seleção do Produto & Pagamento-->
+                     <fieldset class="form-group">
+                        <legend>3. Pedido & Pagamento</legend>
+
+                        <div class="input-grid">
+                            <div class="input-box">
+                                <label for="quantidade">Quantidade de Frascos *</label>
+                                <select id="quantidade" name="quantidade" required>
+                                    <option value="1">1 frasco - tratamento 30 dias</option>
+                                    <option value="2">2 Frascos - tratamento 60 dias</option>
+                                    <option value="3">3 frascos - tratamento 90 dias (Melhor Valor)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="pagamento">Forma de Pagamento *</label>
+                                <select id="pagamento" name="pagamento" required>
+                                    <option value="pix">PIX (Aprovação Imediata)</option>
+                                    <option value="cartao">Cartão de Crédito</option>
+                                    <option value="boleto">Boleto Bancário</option>
+                                </select>
+                            </div>
+                        </div>
+                     </fieldset>
+
+                     <!-- Botão de Envio-->
+                      <button type="submit" class="btn btn-primary btn-submit">
+                        Confirmar e Comprar Agora
+                      </button>
+
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="contato">
+        <p>
+            Siga no <a href="https://www.instagram.com/brotodebananeira_" target="_blank">Instagram</a> | Fale no Whatsapp
+        </p>
+    </footer>
+
+    <button class="back-to-top" aria-label="Voltar ao topo">&uarr;</button>
+
+    <script src="broto-da-bananeira.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criando Formulário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #5d5343;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .instruction {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            font-style: italic;
+            color: #333;
+        }
+        .options-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+        }
+        .card {
+            background-color: #e2ded7;
+            border: 1px solid #7a7062;
+            width: 110px;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card button {
+            all: unset;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .card img {
+            width: 60px;
+            height: 60px;
+            margin-top: 15px;
+            object-fit: contain;
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: #333;
+            padding: 5px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-footer{
+            background-color: #5d5343;
+            height: 25px;
+            width: 100px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        Gerenciador de atendimento - Emissão de senhas
+    </header>
+
+    <main>
+        <p class="instrucion">Selecioneo tipo de atendimento para emitir senha</p>
+
+        <form action="/emitir-senha" method="post" class="options-container">
+            <div class="card">
+                <button type="submit" name="opcao" value="80_prioridade">
+                    <img src="icon-80.png" alt="Ícone 80+">
+                    <span class="card-title">80+<br>Preferencial</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+
+            <div class="card">
+                <button type="submit" name="opcao" value="atendimento_preferencial">
+                    <img src="icon-preferencial.png" alt="Ícone Atendimento Preferencial">
+                    <span class="card-title">Atendimento<br>Preferencial</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="tea_preferencial">
+                    <img src="icon-tea.png" alt="Ícone TEA Preferencial">
+                    <span class="card-title">TEA<br>Preferencial</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="pre_cadastro">
+                    <img src="icon-precadastro.png" alt="Ícone Pré-Cadastro">
+                    <span class="card-title">Pré-<br>Cadastro</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="vacinas">
+                    <img src="icon-vacinas.png" alt="Ícone Vacinas">
+                    <span class="card-title">Vacinas</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="exames">
+                    <img src="icon-exames.png" alt="Ícone Exames">
+                    <span class="card-title">Exames</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="material_pendente">
+                    <img src="icon-coleta.png" alt="Ícone Material Pendente">
+                    <span class="card-title">Material Pendente<br><small>Dirija-se ao balcão de coleta</small></span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="resultados">
+                    <img src="icon-resultados.png" alt="Ícone Resultados">
+                    <span class="card-title">Resultados</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+            <div class="card">
+                <button type="submit" name="opcao" value="orcamento">
+                    <img src="icon-orcamento.png" alt="Ícone Orçamento">
+                    <span class="card-title">Orçamento</span>
+                    <div class="card-footer"></div>
+                </button>
+            </div>
+
+        </form>
+    </main>
+    
+</body>
+</html>
