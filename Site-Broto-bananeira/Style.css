@@ -1,4 +1,22 @@
 @charset "UTF-8";
+/* ==========================================================================
+   1. VARIÁVEIS E RESET
+   ========================================================================== */
+:root {
+    --cor-primaria: #2d5a27;       /* Verde Botânico */
+    --cor-primaria-hover: #1e3f1a; /* Verde mais escuro */
+    --cor-secundaria: #8c6d46;     /* Tom Terroso / Madeira */
+    --cor-fundo: #fcfbf7;          /* Off-white */
+    --cor-card-fundo: #ffffff;     /* Branco puro */
+    --cor-texto: #2c3531;          /* Grafite legível */
+    --cor-texto-suave: #555555;    
+    
+    --fonte-titulos: 'Playfair Display', Georgia, serif;
+    --fonte-corpo: 'Poppins', sans-serif;
+    
+    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --sombra-header: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
 
 * {
     margin: 0;
@@ -6,382 +24,250 @@
     box-sizing: border-box;
 }
 
-
-/* ==== IMPORTAR AS FONTES (fica no topo do arquivo, antes de tudo) ==== */
-@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Karla:wght@400;500;600;700&display=swap');
-
-/* ======= VARIÁVEIS - CORES + FONTES JUNTAS ======= */
-:root {
-    --verde-floresta: #1F3A28; /* mais escuro - hierarquia máxima */
-    --verde-salvia:   #5A7A52; /* intermediário - interação */
-    --verde-musgo:    #8FA382; /* claro - apoio/secundário */
-    --dourado-oliva:  #c9b88a; /* destaque pontual */
-    --creme:          #F3EDE0; /*fundo/base */
-
-    --font-titulo: 'Cormorant Garamond', sans-serif;
-    --font-corpo: 'Karla', sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fefdfa;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: var(--fonte-corpo);
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 10px;
 }
 
-/* === Estilos do cabeçalho === */
-header {
-    background-color: #3b5a41;
-    color: #fcf7e1;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  
+/* ==========================================================================
+   2. NAVEGAÇÃO E TOP-BAR
+   ========================================================================== */
+.main-header {
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(252,251,247,1) 100%);
+    position: relative;
 }
-/* === Barra Superior com Logo e menu === */
+
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transicao);
 }
 
+/* Efeito ao rolar a página */
+.main-header.scrolled .top-bar {
+    padding: 0.8rem 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: var(--sombra-header);
+}
+
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
+    gap: 12px;
     text-decoration: none;
-    color: inherit;
 }
 
 .logo-icon {
-    width: 35px;
-    height: 35px;
-    background-color: #fcf7e1;
-    color: #3b5a41;
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    font-family: var(--fonte-titulos);
+    font-weight: 700;
+    font-size: 1.2rem;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 12px;
+    transition: var(--transicao);
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(15deg);
+    background-color: var(--cor-primaria-hover);
 }
 
 .brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-family: var(--fonte-titulos);
     font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--cor-primaria);
 }
 
+/* Links do Menu */
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 25px;    
+    list-style: none;
+    gap: 2rem;
 }
 
-.nav-links a {
+.nav-link {
     text-decoration: none;
-    color: #fcf7e1;
-    font-size: 16px;
+    color: var(--cor-texto);
     font-weight: 500;
-    transition: color 0.3s ease;   
+    font-size: 1rem;
+    position: relative;
+    padding: 5px 0;
+    transition: var(--transicao);
 }
 
-.nav-links a:hover {
-    color: #b9d8ba;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--cor-primaria);
+    transition: var(--transicao);
 }
 
-/* === Seção de destaque === */
+.nav-link:hover, .nav-link.active {
+    color: var(--cor-primaria);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+/* Botão Hambúrguer (Mobile) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--cor-primaria);
+    position: relative;
+    transition: var(--transicao);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--cor-primaria);
+    transition: var(--transicao);
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+/* Animação do botão Hambúrguer ativado */
+.menu-toggle.active .hamburger {
+    background-color: transparent;
+}
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
 .hero-section {
-    padding: 60px 0;
-}
-
-.hero-content {
+    padding: 5rem 0 6rem 0;
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .hero-content h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 700;
-    color: #fcf7e1;
-    margin-bottom: 20px;
+    font-family: var(--fonte-titulos);
+    font-size: 3rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1.2rem;
     line-height: 1.2;
 }
 
 .hero-content p {
-    font-size: 18px;
-    color: #fcf7e1;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    text-align: center;
-    margin: auto;
+    font-size: 1.15rem;
+    color: var(--cor-texto-suave);
+    max-width: 680px;
+    margin: 0 auto 2.5rem auto;
 }
 
-/* === Estilo de botão adicionais === */
-/*.btn-primary {
+.btn-primary {
     display: inline-block;
-    background-color: #fcf7e1;
-    color: #3b5a41;
-    padding: 12px 30px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-*/
-/*.btn-primary:hover {
-    background-color: #e5e0c569;
-    
-}
-*/ 
-
-
-/*=======BASE======= */
-
-/*
-body {
-   background-color: var(--creme);
-   color: var(--verde-floresta);
-   font-family: var(--font-corpo);
-   font-size: 16px;
-   line-height: 1.6;
-   margin: 0; 
-}
-
-header {
-    background-image: linear-gradient(to left, 
-    var(--dourado-oliva,), var(--verde-musgo));
-    font-size: 16px;
-    box-shadow: 1px  1px 3px rgba(0, 0, 0, 0.19);
-    min-height: 150px;
-    text-align: center;
-    padding: 10px;
-}
-
-header h1 {
-   letter-spacing: -3px;
-    font-family: var(--font-titulo);
-}
-
-header p {
-    margin-left: 235px;
-    margin-top: 0px;
-    padding: 0px;
-    font-size: 1.2em;
-    text-align: center;
-    letter-spacing: -1px;
-}
-
-*/
-
-
-/*
-
-header h1 {
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.265);
-    
-}
-
-header p {
-    margin-bottom: 0px;
-  
-}
-*/
-
-/*nav {
-    background-color: var(--creme);
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.069);
-    background-image: linear-gradient(to left, var(--dourado-oliva), var(--verde-musgo));
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    color: rgba(255, 255, 255, 0.81); 
-    margin-left: 15px;
-}
-
-nav {
-    margin-bottom: 50px;
-    text-align:left;
-    margin: 10px 278px;
-    margin-top: 0px;
-}
-*/
-
-
-main {
-    background-color: white;
-    margin-left: 30px;
-    padding: 10px;
-    background-image: linear-gradient(to left, white, var(--creme));    
-}
-
-    
-
-
-h1 {
-    font-family: var(--font-titulo);
-    color: var(--verde-floresta);
-    font-weight: 600;
-    font-size: clamp(32px, 5vw, 52px);
-    line-height: 1.1;
-}
-
-h2 {
-    font-family: var(--font-titulo);
-    color: var(--verde-floresta);
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
     font-weight: 500;
-    font-size: clamp(28px, 4vw, 32px);
-    line-height: 1.0;
-}
-
-h3 {
-   font-family: var(--font-titulo);
-    color: var(--verde-floresta);
-    font-weight: 500;
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.0; 
-}
-
-/* =====PARÁGRAFOS ===== */
-p {
-    font-family: var(--font-corpo);
-    font-size: 16px;
-    color: var(--verde-floresta);
-    opacity: 0.88;
-    max-width: 640px;
-    text-align: justify;
-    text-indent: 30px;
-}
-
-/* ===== PALAVRAS EM DESTAQUE ===== */
-strong, em, .destaque {
-    color: var(--dourado-oliva);
-    font-style: normal;
-    font-weight: 700;
-    background: linear-gradient(transparent 20%, rgba(201, 184, 138, 0.25) 20%);
-    padding: 0 2px;
-}
-
-/* ===== LINKS ===== */
-a {
-    color: var(--verde-salvia);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-a:hover {
-    color: var(--dourado-oliva);
-    border-bottom-color: var(--dourado-oliva);
-}
-
-/* ===== DESTAQUES ===== */
-.
-
-/* ===== BOTÕES ===== */
-.btn {
-    display: inline-block;
-    font-family: var(--font-corpo);
-    font-weight: 600;
-    font-size: 14px;
-    padding: 12px 28px;
-    border-radius: 100px;
-    background-color: var(--verde-salvia);
-    color: var(--creme);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.destaque {
-    background: linear-gradient(120deg, #f5deb3 0%, #f5deb3 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 40%;
-    background-position: 0 88%;
-    padding: 0 2px;
-    font-weight: 600;
-    color: #3a2e1f;
-    transition: background-size 0.3s ease;
-}
-
-.destaque:hover {
-    background-size: 100% 100%;
-}
-
-/* ===== Títulos dos benefícios (recuperaçãodos fios, etc.) ===== */
-.beneficio-titulo {
-    color: #7a5c1e;
-    font-weight: 700;
-    text-decoration: none;
-    border-bottom: 2px solid #c9a24b;
-    padding-bottom: 1px;
-    transition: color 0.25s ease, border-color 0.25s ease;
-}
-
-
-.beneficio-titulo:hover {
-    color: #5c4315;
-    border-color: #8a6a1f;
-}
-
-/* ===== ícone + títulos alinhados ===== */
-li {
-    /*display: flex;*/
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
     font-size: 1.05rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(45, 90, 39, 0.25);
+    transition: var(--transicao);
 }
 
-.btn:hover {
-    background-color: var(--verde-floresta);
-    transform: translateY(-2px);
+.btn-primary:hover {
+    background-color: var(--cor-primaria-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(45, 90, 39, 0.35);
 }
 
-.btn-secundario {
-    background-color: transparent;
-    color: var(--verde-floresta);
-    border: 1.5px solid var(--verde-floresta);
-}
+/* ==========================================================================
+   4. RESPONSIVIDADE (Telas Menores)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
 
-.btn-secundario:hover {
-    background-color: var(--verde-floresta);
-    color: var(--creme);
-}
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background-color: var(--cor-card-fundo);
+        box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transicao);
+        z-index: 1050;
+    }
 
-/* ===== RODAPÉ ===== */
-footer {
-    background-color: var(--creme);
-    color: var(--font-titulo);
-    font-family: var(--font-corpo);
-    font-size: 15px;
-    padding: 0px 24px 24px;
-    margin-top: 50px;
-    margin-bottom: 0px;   
-}
+    .nav-menu.active {
+        right: 0;
+    }
 
-/*
-footer .logo-rodape {
-    font-family: var(--font-titulo);
-    font-weight: 300px;
-    font-size: 20px;
-    color: var(--creme);
-}
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+    }
 
-footer a {
-    color: var(--dourado-oliva);
-}
+    .nav-link {
+        font-size: 1.2rem;
+    }
 
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
 
-footer a, footer span:hover {
-    color: var(--verde-musgo);
-    border-bottom-color: var(--verde-musgo);
+    .hero-content p {
+        font-size: 1rem;
+    }
 }
-*/
